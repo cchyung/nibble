@@ -15,8 +15,6 @@ var ApiUtils = {
 
 var Authorizer = {
   submitLogin: async function(email, password) {
-    console.log('hello');
-    // AuthService.login(username, password, this.authCallback(callback));
     try {
       fetch('https://trollow-backend.herokuapp.com/v1/auth/token/create/', {
         method: 'POST',
@@ -53,8 +51,6 @@ var Authorizer = {
   },
 
   submitSignup: function(email, password) {
-    console.log('hello0');
-    // AuthService.signup(username, password, this.authCallback(callback));
     Authorizer.submitLogin(email, password);
   }
 };
