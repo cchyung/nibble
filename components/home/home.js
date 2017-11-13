@@ -16,10 +16,11 @@ import {
   Image
 } from 'react-native';
 
-import MapView from 'react-native-maps';
+import MapView from 'react-native-maps'
 
-import Images from '@assets/images';
+import Images from '@assets/images'
 import ToggleMenuButton from '../common/toggle-menu-button'
+import TruckPopup from './truck-popup'
 
 
 const trucks = [
@@ -106,6 +107,7 @@ export default class Home extends Component {
         >  
             { posts.map((post, index) => this._renderPost(post))}
         </MapView>
+        <TruckPopup/>
       </View>
     );
   }
