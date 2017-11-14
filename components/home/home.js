@@ -21,6 +21,7 @@ import MapView from 'react-native-maps'
 import Images from '@assets/images'
 import ToggleMenuButton from '../common/toggle-menu-button'
 import TruckPopup from './truck-popup'
+import TruckMarker from './truck-marker'
 
 
 const trucks = [
@@ -74,27 +75,36 @@ const posts = [
   },
 ]
 
+
+
 export default class Home extends Component {
+  state = {
+    popupIsOpen: false,
+  }
+
+  openTruckPopup = (post) => {
+    this.setState({
+      popupIsOpen: true,
+      post,	
+    });
+  }
+
+  closeTruckPopup = () => {
+    this.setState({
+      popupIsOpen: false,
+    });
+  }
   
-  // Takes a post object and returns a MapView.Marker with the given coordinates in the post
-  _renderPost(post){
-    // Generate location object
-    const location = {
-      latitude: post.latitude,
-      longitude: post.longitude
-    }
-    
+  // Takes a post object and returns a TruckMarker with the given coordinates in the post
+  _renderPost(post){  
     return(
-      <MapView.Marker
-        coordinate={ location }           
-        key={ post.truck }
-      />
+      <TruckMarker post={ post } onOpen = { this.openTruckPopup }/>
     );
   }
   
   render() {
     return (
-      <View style={styles.homeScreen} style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <View style={ styles.homeScreen } style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
         <ToggleMenuButton navigation={ this.props.navigation }/>
         <MapView
           style={styles.map}
@@ -108,6 +118,12 @@ export default class Home extends Component {
             { posts.map((post, index) => this._renderPost(post))}
         </MapView>
         <TruckPopup/>
+        
+        <TruckPopup
+          post={this.state.post}
+          isOpen={this.state.popupIsOpen}
+          onClose={this.closeTruckPopup}
+        />
       </View>
     );
   }

@@ -5,10 +5,46 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
-  Text
+  Text,
+  Animated,
+  Dimensions,
+  TouchableWithoutFeedback,
 } from 'react-native';
 
+const { width, height } = Dimensions.get('window');
+
 export default class TruckPopup extends Component {
+  state = {
+    position: new Animated.Value(this.props.isOpen ? 0 : height),
+    // height: height / 2,
+    visible: this.props.isOpen,
+  }
+  
+  componentWillReceiveProps(nextProps){
+    // Handle whether or not to open
+    
+    if(!this.props.isOpen && nextProps.isOpen){
+      this.animateOpen();
+    } else if (this.props.isOpen && !nextProps.isOpen) {
+      this.animateClose();
+    }
+  }
+  
+  animateOpen() {
+    this.setState({ visible: true }, () => {
+      Animated.timing(
+        this.state.position, { toValue: 0 }
+      ).start();
+    });
+  }
+  
+  animateClose() {
+    // Slide down
+    Animated.timing(
+      this.state.position, { toValue: height }  // bottom of the screen
+    ).start(() => this.setState({ visible: false }));
+  }
+  
   render(){
     // const { truck } = this.props;
     const truck = {
@@ -19,28 +55,40 @@ export default class TruckPopup extends Component {
       "description": "Yummy protein shakes and shit lol",
       "genre": "Healthy Food",
       "email": "contact@kitaoka.com",
-      "phone": "3333333334"
+      "phone": "3333333334",
+      "averageRating":2.4
     }
     
-    return (
-      <View style={ styles.truckPopup }>
-        <View style={styles.truckProfilePic}>
-        </View>
-        <View style={styles.likeButton}>
-        </View>
-        <View style={ styles.truckCardDetail }>
-          <View style={styles.truckInformation}>
-            <Text style={ [styles.textCenter, styles.header] }>{ truck.title }</Text>
-            <Text style={ styles.textCenter }>{ truck.genre }</Text>
-            <Text style={ styles.textCenter }>{ truck.averageRating }</Text>
-            <Text style={ styles.textCenter }>{ truck.address }</Text>
+    const { post } = this.props;
+    
+    if(!this.state.visible){
+      return null; // Do nothing because not visible
+    } else {
+      return (
+        <View style={ styles.container }>
+          <TouchableWithoutFeedback onPress={ this.props.onClose }>
+            <View style= { styles.backdrop }></View>
+          </TouchableWithoutFeedback>
+          <View style={ styles.truckPopup }>
+            <View style={ styles.truckProfilePic }>
+            </View>
+            <View style={ styles.likeButton }>
+            </View>
+            <View style={ styles.truckCardDetail }>
+              <View style={styles.truckInformation}>
+                <Text style={ [styles.textCenter, styles.header] }>{ truck.title }</Text>
+                <Text style={ styles.textCenter }>{ truck.genre }</Text>
+                <Text style={ styles.textCenter }>{ truck.averageRating }</Text>
+                <Text style={ [styles.ratingText, styles.textCenter] }>{ post.truck }</Text>
+              </View>
+              <TouchableOpacity style={styles.seeMoreButton}>
+                <Text style={styles.seeMoreButtonText}>See More</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <TouchableOpacity style={styles.seeMoreButton}>
-            <Text style={styles.seeMoreButtonText}>See More</Text>
-          </TouchableOpacity>
         </View>
-      </View>
-    )
+      )  
+    }
   }
 }
 
@@ -49,7 +97,7 @@ const styles = StyleSheet.create({
     marginTop: 25,
     marginBottom: 5,
     alignSelf: 'center',
-    width: '85%',
+    width: '90%',
     position:'absolute',
     bottom: -5
     
@@ -90,7 +138,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 75,
     borderRadius: 5,
-    paddingHorizontal: 20,
+    paddingHorizontal: 30,
+  },
+  
+  textCenter: {
+    paddingVertical: 5,
+    textAlign: 'center',
+    fontSize: 18,
+  },
+  
+  ratingText: {
+    fontSize: 10
   },
 
   followers: {
@@ -106,28 +164,35 @@ const styles = StyleSheet.create({
       fontSize: 18,
   },
 
-  textCenter: {
-    paddingVertical: 5,
-    textAlign: 'center',
-    fontSize: 18,
-  },
-
   header: {
     fontSize: 28,
   },
   
   seeMoreButton: {
     backgroundColor: '#ffa61f',
-    borderRadius: 20,
+    borderRadius: 30,
     alignSelf: 'center',
     width: '30%',
-    marginBottom: 20
+    marginBottom: 10
   },
   
   seeMoreButtonText: {
       color: 'white',
       fontWeight: 'bold',
       textAlign: 'center',
-      paddingVertical: 5      
+      marginVertical: 5,
+      marginHorizontal: 10  
+  },
+  
+  backdrop: {
+    ...StyleSheet.absoluteFillObject,
+    flex: 1,
+  },
+  
+  container: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'flex-end',
+    backgroundColor: 'transparent',
   }
+  
 });

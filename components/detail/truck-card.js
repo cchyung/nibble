@@ -15,21 +15,20 @@ export default class TruckCard extends Component {
     };
     return (
       <View style={ styles.truckCard }>
-        <View style={styles.truckProfilePic}>
+        <View style={ styles.truckProfilePic }>
         </View>
-        <View style={styles.likeButton}>
+        <View style={ styles.likeButton }>
         </View>
         <View style={ styles.truckCardDetail }>
-          <View style={styles.truckInformation}>
+          <View style={ styles.truckInformation }>
             <Text style={ [styles.textCenter, styles.header] }>{ truck.title }</Text>
             <Text style={ styles.textCenter }>{ truck.genre }</Text>
-            <View style={styles.followers}>
-              <Text style={styles.followersText}>{truck.followers} Followers</Text>
+            <View style={ styles.followers }>
+              <Text style={ styles.followersText }>{ truck.followers } Followers</Text>
             </View>
           </View>
         </View>
       </View>
-
     );
   }
 }
