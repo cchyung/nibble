@@ -14,6 +14,10 @@ import {
   NavigationActions
  } from 'react-navigation';
 
+ import { Provider } from 'react-redux'
+ import { createStore } from 'redux'
+ import trollowApp from './reducers/trollowApp'
+
 import Root from './components/root'
 import Home from './components/home/home'
 import Login from './components/auth/login'
@@ -22,13 +26,7 @@ import TruckDetail from './components/detail/truck-detail'
 import BackButton from './components/common/back-button'
 import ToggleMenuButton from './components/common/toggle-menu-button'
 
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+let store = createStore(trollowApp)
 
 class DetailScreen extends Component<{}> {
   static navigationOptions = {
@@ -37,12 +35,14 @@ class DetailScreen extends Component<{}> {
 
   render() {
     return (
-      <View style={{
-        flex: 1,
-        backgroundColor:"#FFA733"
-      }}>
-        <TruckDetail style={{flex: 1}} navigation={ this.props.navigation }/>
-      </View>
+      <Provider store={store}>
+        <View style={{
+          flex: 1,
+          backgroundColor:"#FFA733"
+        }}>
+          <TruckDetail style={{flex: 1}} navigation={ this.props.navigation }/>
+        </View>
+      </Provider>
     );
   }
 }
@@ -117,11 +117,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
 
   map: {
