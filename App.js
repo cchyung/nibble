@@ -16,7 +16,7 @@ import {
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { apiMiddleware, reducer } from './redux';
+import { apiMiddleware } from 'redux-api-middleware';
 
 import trollowApp from './reducers/trollowApp'
 
