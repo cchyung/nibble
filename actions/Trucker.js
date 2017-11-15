@@ -11,28 +11,22 @@ var ApiUtils = {
   }
 };
 
-var Onboarder = {
-  registerTruck: async function(title, description, genre, email, phone) {
+var Trucker = {
+  getTruck: async function(uuid) {
     try {
-      fetch('https://trollow-backend.herokuapp.com/v1/me/trucks/', {
-        method: 'POST',
+      let url = 'https://trollow-backend.herokuapp.com/v1/trucks/' + uuid;
+      fetch(url, {
+        method: 'GET',
         headers: {
           'Accept': 'application/json',
           'Authorization': 'need/to/figure/this/out'
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify( {
-          'title': title,
-          'description': description,
-          'genre': genre,
-          'email': email,
-          'phone': phone
-        }),
       })
       .then(ApiUtils.checkStatus)
       .then((response) => response.json())
       .then(async (response) => {
-        console.log('creation successful');
+        console.log('truck retrival successful');
         console.log(response);
         //figure out what to do with the truck here
       })
@@ -42,7 +36,7 @@ var Onboarder = {
       })
       .done();
     } catch (Error) {
-      console.log('WAS NOT ABLE TO CREATE TRUCK');
+      console.log('WAS NOT ABLE TO GET TRUCK');
     }
   },
 
