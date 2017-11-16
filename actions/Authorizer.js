@@ -1,11 +1,18 @@
+import React from 'react';
+import { AsyncStorage, ReactNative } from 'react-native';
+
 var loggedIn = false;
 
 var ApiUtils = {
   checkStatus: function(response) {
+    console.log('checking status');
     if (response.status >= 200 && response.status < 300) {
       return response;
     } else {
       //error message handling here
+      console.log('error here in status');
+      console.log('response status:' + response.status);
+      console.log('response status text: ' + response.statusText);
       let error = new Error(response.statusText);
       error.response = response;
       throw error;
@@ -32,15 +39,15 @@ var Authorizer = {
       .then(async (response) => {
         console.log('login successful');
         console.log(response.auth_token);
-        const value =
+        try {
           await AsyncStorage.setItem('auth_token', response.auth_token);
-        if (value === null) {
-          let error = new Error('auth token storage value is null');
-          throw error;
+        } catch (error) {
+          console.log('error saving data: ' + error);
         }
-
       })
       .catch((error) => {
+        console.log(error);
+        console.log('error here');
         // login not successful,
         // need to display error message on screen
       })
