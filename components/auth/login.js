@@ -30,6 +30,7 @@ export default class Login extends Component {
   }
 
   loginPressed = () => {
+    console.log('pressed login button');
     Authorizer.submitLogin(this.state.email, this.state.password);
   }
 

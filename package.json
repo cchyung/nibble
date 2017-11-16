@@ -8,7 +8,8 @@
     "react-native-maps": "^0.17.1",
     "react-navigation": "^1.0.0-beta.19",
     "react-redux": "^5.0.6",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-api-middleware": "^2.0.0-beta.3"
   },
   "name": "trollow",
   "version": "0.0.0",
