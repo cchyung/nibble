@@ -14,7 +14,7 @@ var ApiUtils = {
 var Onboarder = {
   registerTruck: async function(title, description, genre, email, phone) {
     try {
-      fetch('https://trollow-backend.herokuapp.com/v1/me/trucks//', {
+      fetch('https://trollow-backend.herokuapp.com/v1/me/trucks/', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',

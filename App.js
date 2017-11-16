@@ -14,9 +14,11 @@ import {
   NavigationActions
  } from 'react-navigation';
 
- import { Provider } from 'react-redux'
- import { createStore } from 'redux'
- import trollowApp from './reducers/trollowApp'
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import { apiMiddleware } from 'redux-api-middleware';
+
+import trollowApp from './reducers/trollowApp'
 
 import Root from './components/root'
 import Home from './components/home/home'
@@ -26,7 +28,7 @@ import TruckDetail from './components/detail/truck-detail'
 import BackButton from './components/common/back-button'
 import ToggleMenuButton from './components/common/toggle-menu-button'
 
-let store = createStore(trollowApp)
+let store = createStore(trollowApp, {}, applyMiddleware(apiMiddleware));
 
 class DetailScreen extends Component<{}> {
   static navigationOptions = {
