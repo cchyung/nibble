@@ -85,7 +85,7 @@ export default class Home extends Component {
   openTruckPopup = (post) => {
     this.setState({
       popupIsOpen: true,
-      post,	
+      post,
     });
   }
 
@@ -94,14 +94,20 @@ export default class Home extends Component {
       popupIsOpen: false,
     });
   }
-  
+
+  onSeeMore = () => {
+    truckUUID = this.state.post.truck; // Get UUID of selected post
+    // this.closeTruckPopup() // Close popup
+    this.props.navigation.navigate('DetailScreen', { uuid: truckUUID }) // Navigate to next screen
+  }
+
   // Takes a post object and returns a TruckMarker with the given coordinates in the post
-  _renderPost(post){  
+  _renderPost(post, key){
     return(
-      <TruckMarker post={ post } onOpen = { this.openTruckPopup }/>
+      <TruckMarker post={ post } key={ key } onOpen = { this.openTruckPopup }/>
     );
   }
-  
+
   render() {
     return (
       <View style={ styles.homeScreen } style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -114,15 +120,16 @@ export default class Home extends Component {
             latitudeDelta: 0.0222,
             longitudeDelta: 0.0221,
           }}
-        >  
-            { posts.map((post, index) => this._renderPost(post))}
+        >
+            { posts.map((post, index) => this._renderPost(post, index)) }
         </MapView>
         <TruckPopup/>
-        
+
         <TruckPopup
-          post={this.state.post}
-          isOpen={this.state.popupIsOpen}
-          onClose={this.closeTruckPopup}
+          post={ this.state.post }
+          isOpen={ this.state.popupIsOpen }
+          onClose={ this.closeTruckPopup }
+          onSeeMore={ this.onSeeMore }
         />
       </View>
     );

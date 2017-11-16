@@ -50,7 +50,7 @@ class DetailScreen extends Component<{}> {
 class RootScreen extends Component<{}> {
   render() {
     return (
-      <Root navigation={this.props.navigation}/>
+      <Root navigation={ this.props.navigation }/>
     );
   }
 }
@@ -58,7 +58,7 @@ class RootScreen extends Component<{}> {
 class LoginScreen extends Component<{}> {
   render() {
     return(
-      <Login/>
+      <Login navigation={ this.props.navigation }/>
     )
   }
 }
@@ -66,12 +66,11 @@ class LoginScreen extends Component<{}> {
 class HomeScreen extends Component<{}> {
   static navigationOptions = {
     drawerLabel: 'Home',
-    // drawerIcon:
   }
 
   render() {
     return(
-      <Home navigation={this.props.navigation}/>
+      <Home navigation={ this.props.navigation }/>
     );
   }
 }
@@ -90,14 +89,24 @@ class HomeScreen extends Component<{}> {
 //   }
 // );
 
-const App = DrawerNavigator(
+const HomeStack = StackNavigator(
   {
     Home: {screen: HomeScreen},
-    Login: {screen: LoginScreen},
-    TruckDetail: {screen: DetailScreen},
+    TruckDetail: {screen: TruckDetail}
   },
   {
     initialRouteName: 'Home',
+    headerMode: 'none',
+  }
+)
+
+const App = DrawerNavigator(
+  {
+    HomeStack: {screen: HomeStack},
+    Login: {screen: LoginScreen},
+  },
+  {
+    initialRouteName: 'HomeStack',
     headerMode: 'none',
     drawerWidth: 244,
     contentOptions: {

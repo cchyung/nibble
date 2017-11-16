@@ -34,6 +34,8 @@ export default class Login extends Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
+
     return (
       <View style={styles.loginScreen}>
         <View style={styles.inputContainer}>

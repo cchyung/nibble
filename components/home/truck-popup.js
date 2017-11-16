@@ -18,33 +18,39 @@ export default class TruckPopup extends Component {
     position: new Animated.Value(this.props.isOpen ? 0 : height),
     // height: height / 2,
     visible: this.props.isOpen,
+    backdropVisible: this.props.isOpen
   }
-  
+
   componentWillReceiveProps(nextProps){
     // Handle whether or not to open
-    
     if(!this.props.isOpen && nextProps.isOpen){
       this.animateOpen();
     } else if (this.props.isOpen && !nextProps.isOpen) {
       this.animateClose();
     }
   }
-  
+
   animateOpen() {
     this.setState({ visible: true }, () => {
-      Animated.timing(
-        this.state.position, { toValue: 0 }
-      ).start();
+        Animated.timing(
+          this.state.position, {
+            toValue: 0,
+            duration: 500
+          }
+        ).start();
     });
   }
-  
+
   animateClose() {
     // Slide down
     Animated.timing(
-      this.state.position, { toValue: height }  // bottom of the screen
+      this.state.position,  {
+        toValue: height,
+        duration: 500
+      }
     ).start(() => this.setState({ visible: false }));
   }
-  
+
   render(){
     // const { truck } = this.props;
     const truck = {
@@ -58,18 +64,24 @@ export default class TruckPopup extends Component {
       "phone": "3333333334",
       "averageRating":2.4
     }
-    
+
     const { post } = this.props;
-    
+
     if(!this.state.visible){
       return null; // Do nothing because not visible
     } else {
       return (
         <View style={ styles.container }>
           <TouchableWithoutFeedback onPress={ this.props.onClose }>
-            <View style= { styles.backdrop }></View>
+            <View style= { styles.backdrop }>
+            </View>
           </TouchableWithoutFeedback>
-          <View style={ styles.truckPopup }>
+          <Animated.View style={ [styles.truckPopup,
+              {
+                // Animates position on the screen
+                transform: [{ translateY: this.state.position }, { translateX: 0 }]
+              }
+          ] }>
             <View style={ styles.truckProfilePic }>
             </View>
             <View style={ styles.likeButton }>
@@ -81,13 +93,13 @@ export default class TruckPopup extends Component {
                 <Text style={ styles.textCenter }>{ truck.averageRating }</Text>
                 <Text style={ [styles.ratingText, styles.textCenter] }>{ post.truck }</Text>
               </View>
-              <TouchableOpacity style={styles.seeMoreButton}>
+              <TouchableOpacity style={styles.seeMoreButton} onPress={ this.props.onSeeMore }>
                 <Text style={styles.seeMoreButtonText}>See More</Text>
               </TouchableOpacity>
             </View>
-          </View>
+          </Animated.View>
         </View>
-      )  
+      )
     }
   }
 }
@@ -100,7 +112,7 @@ const styles = StyleSheet.create({
     width: '90%',
     position:'absolute',
     bottom: -5
-    
+
   },
 
   truckProfilePic: {
@@ -140,13 +152,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 30,
   },
-  
+
   textCenter: {
     paddingVertical: 5,
     textAlign: 'center',
     fontSize: 18,
   },
-  
+
   ratingText: {
     fontSize: 10
   },
@@ -167,7 +179,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 28,
   },
-  
+
   seeMoreButton: {
     backgroundColor: '#ffa61f',
     borderRadius: 30,
@@ -175,24 +187,24 @@ const styles = StyleSheet.create({
     width: '30%',
     marginBottom: 10
   },
-  
+
   seeMoreButtonText: {
       color: 'white',
       fontWeight: 'bold',
       textAlign: 'center',
       marginVertical: 5,
-      marginHorizontal: 10  
+      marginHorizontal: 10
   },
-  
+
   backdrop: {
     ...StyleSheet.absoluteFillObject,
     flex: 1,
   },
-  
+
   container: {
     ...StyleSheet.absoluteFillObject,
     justifyContent: 'flex-end',
     backgroundColor: 'transparent',
   }
-  
+
 });
