@@ -13,8 +13,9 @@ import React, {
  } from 'react-native';
 
  import MapView from 'react-native-maps';
+ import Images from '@assets/images';
 
-export default class TruckMarker extends Component {
+ export default class TruckMarker extends Component {
   static propTypes = {
     // Movie object with title, genre, and poster
     // post: PropTypes.object.isRequired,
@@ -31,7 +32,13 @@ export default class TruckMarker extends Component {
     }
 
     return(
-      <MapView.Marker coordinate = { location } onPress = { () => onOpen(post) }></MapView.Marker>
+      <MapView.Marker
+        coordinate = { location }
+        onPress = { () => onOpen(post) }
+        image= { Images.truckMarker }
+      >
+
+      </MapView.Marker>
     );
   }
 }

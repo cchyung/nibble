@@ -66,10 +66,6 @@ class LoginScreen extends Component<{}> {
 }
 
 class HomeScreen extends Component<{}> {
-  static navigationOptions = {
-    drawerLabel: 'Home',
-  }
-
   render() {
     return(
       <Home navigation={ this.props.navigation }/>
@@ -104,7 +100,12 @@ const HomeStack = StackNavigator(
 
 const App = DrawerNavigator(
   {
-    HomeStack: {screen: HomeStack},
+    HomeStack: {
+      screen: HomeStack,
+      navigationOptions: {
+        title: "Home"
+      }
+    },
     Login: {screen: LoginScreen},
   },
   {

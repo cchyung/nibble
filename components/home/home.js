@@ -98,7 +98,7 @@ export default class Home extends Component {
   onSeeMore = () => {
     truckUUID = this.state.post.truck; // Get UUID of selected post
     // this.closeTruckPopup() // Close popup
-    this.props.navigation.navigate('DetailScreen', { uuid: truckUUID }) // Navigate to next screen
+    this.props.navigation.navigate('TruckDetail', { uuid: truckUUID }) // Navigate to next screen
   }
 
   // Takes a post object and returns a TruckMarker with the given coordinates in the post

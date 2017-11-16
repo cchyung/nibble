@@ -15,9 +15,10 @@ import BackButton from '../common/back-button'
 // Truck detail screen
 export default class TruckDetail extends Component {
   render() {
+    const { navigation } = this.props
     return (
         <ScrollView style={{flex: 1}} contentContainerStyle={{flex: 0}}>
-            <BackButton navigation = {this.props.navigation}/>
+            <BackButton navigation={ navigation }/>
             <View style={ styles.detailContent }>
               <TruckCard/>
               <AboutCard/>
