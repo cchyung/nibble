@@ -83,6 +83,7 @@ export default class Home extends Component {
   }
 
   openTruckPopup = (post) => {
+    console.log(post.uuid);
     this.setState({
       popupIsOpen: true,
       post,

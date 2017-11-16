@@ -17,5 +17,5 @@
   "author": null,
   "devDependencies": {
     "babel-plugin-transform-decorators-legacy": "^1.3.4"
-  }
+  },
 }
