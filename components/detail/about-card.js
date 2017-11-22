@@ -7,15 +7,13 @@ import {
 
 export default class AboutCard extends Component {
   render() {
-    const about = {
-      description: 'Hi there! We cherish the Spanish roots in LA and provide some of the city\'s best ethnic foods.'
-    };
+    const { truck } = this.props
     return (
       <View style={ styles.truckCard }>
         <View style={ styles.truckCardDetail }>
           <View style={styles.truckInformation}>
             <Text style={ [styles.textCenter, styles.header] }>About Us</Text>
-            <Text style={ styles.textCenter }>{ about.description }</Text>
+            <Text style={ styles.textCenter }>{ truck.description }</Text>
           </View>
         </View>
       </View>
@@ -52,7 +50,9 @@ const styles = StyleSheet.create({
   textCenter: {
     paddingVertical: 5,
     textAlign: 'center',
+    fontSize: 14
   },
+
   header: {
     fontSize: 18,
   }

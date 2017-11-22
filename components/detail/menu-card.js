@@ -8,6 +8,7 @@ import {
 
 export default class MenuCard extends Component {
   render() {
+    const { truck } = this.props
     return (
       <View style={ styles.truckCard }>
         <View style={ styles.truckCardDetail }>

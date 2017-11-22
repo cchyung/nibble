@@ -23,69 +23,31 @@ import ToggleMenuButton from '../common/toggle-menu-button'
 import TruckPopup from './truck-popup'
 import TruckMarker from './truck-marker'
 
-
-const trucks = [
-    {
-        "uuid": "0d30cd52-875b-4eb1-815f-358456d81b67",
-        "posts": [
-            {
-                "uuid": "dc6b9155-5a80-4a29-a452-b56d937818ce",
-                "truck": "0d30cd52-875b-4eb1-815f-358456d81b67",
-                "start_time": "2017-11-12T22:00:00Z",
-                "end_time": "2017-11-12T23:00:00Z",
-                "latitude": "34.023203",
-                "longitude": "-118.291640"
-            }
-        ],
-        "owner": "c5b2abbf-cee3-4e0d-93b0-e80566dc43f7",
-        "title": "Kogi",
-        "description": "Food truck with BEEF",
-        "genre": "Beef",
-        "email": "contact@kogi.com",
-        "phone": "3332444244"
-    },
-    {
-        "uuid": "58f5f0ff-e8f6-4517-b859-69215df47ce8",
-        "posts": [],
-        "owner": "58698a83-6c93-41bc-b60b-46ef305a445b",
-        "title": "Donny's Muscles on the Cheap",
-        "description": "Yummy protein shakes and shit lol",
-        "genre": "Healthy Food",
-        "email": "contact@kitaoka.com",
-        "phone": "3333333334"
-    }
-]
-
-const posts = [
-  {
-      "uuid": "dc6b9155-5a80-4a29-a452-b56d937818ce",
-      "truck": "0d30cd52-875b-4eb1-815f-358456d81b67",
-      "start_time": "2017-11-12T22:00:00Z",
-      "end_time": "2017-11-12T23:00:00Z",
-      "latitude": 34.023203,
-      "longitude": -118.291640
-  },
-  {
-      "uuid": "dc6b9155-5a80-4a29-a452-b56d937818ce",
-      "truck": "58f5f0ff-e8f6-4517-b859-69215df47ce8",
-      "start_time": "2017-11-12T22:00:00Z",
-      "end_time": "2017-11-12T23:00:00Z",
-      "latitude": 34.024203,
-      "longitude": -118.294640
-  },
-]
-
-
+import {
+  posts,
+  trucks
+} from '@data/data'
 
 export default class Home extends Component {
   state = {
     popupIsOpen: false,
   }
 
+  // Helper function to get truck data by id
+  getTruckByUUID = (uuid) => {
+    for(var i = 0; i < trucks.length; i++){
+      if(trucks[i].uuid == uuid){
+        return trucks[i];
+      }
+    }
+  }
+
   openTruckPopup = (post) => {
+    truck = this.getTruckByUUID(post.truck) // Get truck object to set to state
     this.setState({
       popupIsOpen: true,
       post,
+      truck,
     });
   }
 
@@ -96,9 +58,7 @@ export default class Home extends Component {
   }
 
   onSeeMore = () => {
-    truckUUID = this.state.post.truck; // Get UUID of selected post
-    // this.closeTruckPopup() // Close popup
-    this.props.navigation.navigate('TruckDetail', { uuid: truckUUID }) // Navigate to next screen
+    this.props.navigation.navigate('TruckDetail', { truck: this.state.truck }) // Navigate to next screen
   }
 
   // Takes a post object and returns a TruckMarker with the given coordinates in the post
@@ -127,6 +87,7 @@ export default class Home extends Component {
 
         <TruckPopup
           post={ this.state.post }
+          truck={ this.state.truck }
           isOpen={ this.state.popupIsOpen }
           onClose={ this.closeTruckPopup }
           onSeeMore={ this.onSeeMore }

@@ -16,13 +16,14 @@ import BackButton from '../common/back-button'
 export default class TruckDetail extends Component {
   render() {
     const { navigation } = this.props
+    const { truck } = this.props.navigation.state.params
     return (
         <ScrollView style={{flex: 1}} contentContainerStyle={{flex: 0}}>
             <BackButton navigation={ navigation }/>
             <View style={ styles.detailContent }>
-              <TruckCard/>
-              <AboutCard/>
-              <MenuCard/>
+              <TruckCard truck = { truck }/>
+              <AboutCard truck = { truck }/>
+              <MenuCard truck = { truck }/>
             </View>
         </ScrollView>
     );

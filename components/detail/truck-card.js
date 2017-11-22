@@ -3,19 +3,17 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Image
 } from 'react-native';
 
 export default class TruckCard extends Component {
   render() {
-    const truck = {
-      title: "The Best Fucking Taco Truck You'll Ever Eat At",
-      genre: "Mexican",
-      followers: 400
-    };
+    const { truck } = this.props;
     return (
       <View style={ styles.truckCard }>
-        <View style={ styles.truckProfilePic }>
+        <View style={ styles.truckProfilePicContainer }>
+          <Image source={{ uri: truck.image }} style={ styles.truckProfilePic }/>
         </View>
         <View style={ styles.likeButton }>
         </View>
@@ -41,14 +39,27 @@ const styles = StyleSheet.create({
     width: '100%',
   },
 
-  truckProfilePic: {
+  truckProfilePicContainer: {
     position: 'absolute',
     height: 125,
     width: 125,
-    backgroundColor: '#aaaaaa',
+    backgroundColor: 'white',
     alignSelf: 'center',
     zIndex: 3,
     borderRadius: 100,
+    borderWidth: 4,
+    borderColor: '#ffa61f',
+    overflow: 'hidden'
+  },
+
+  truckProfilePic: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+    zIndex: 4,
+    alignSelf: 'center',
   },
 
   likeButton: {

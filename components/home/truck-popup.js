@@ -9,6 +9,7 @@ import {
   Animated,
   Dimensions,
   TouchableWithoutFeedback,
+  Image
 } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
@@ -52,20 +53,8 @@ export default class TruckPopup extends Component {
   }
 
   render(){
-    // const { truck } = this.props;
-    const truck = {
-      "uuid": "58f5f0ff-e8f6-4517-b859-69215df47ce8",
-      "posts": [],
-      "owner": "58698a83-6c93-41bc-b60b-46ef305a445b",
-      "title": "Donny's Muscles on the Cheap",
-      "description": "Yummy protein shakes and shit lol",
-      "genre": "Healthy Food",
-      "email": "contact@kitaoka.com",
-      "phone": "3333333334",
-      "averageRating":2.4
-    }
-
     const { post } = this.props;
+    const { truck } = this.props;
 
     if(!this.state.visible){
       return null; // Do nothing because not visible
@@ -82,7 +71,8 @@ export default class TruckPopup extends Component {
                 transform: [{ translateY: this.state.position }, { translateX: 0 }]
               }
           ] }>
-            <View style={ styles.truckProfilePic }>
+            <View style={ styles.truckProfilePicContainer }>
+              <Image source={{ uri: truck.image }} style={ styles.truckProfilePic }/>
             </View>
             <View style={ styles.likeButton }>
             </View>
@@ -90,11 +80,10 @@ export default class TruckPopup extends Component {
               <View style={styles.truckInformation}>
                 <Text style={ [styles.textCenter, styles.header] }>{ truck.title }</Text>
                 <Text style={ styles.textCenter }>{ truck.genre }</Text>
-                <Text style={ styles.textCenter }>{ truck.averageRating }</Text>
-                <Text style={ [styles.ratingText, styles.textCenter] }>{ post.truck }</Text>
+                <Text style={ [styles.textCenter, styles.ratingText] }>{ truck.averageRating ? truck.averageRating : "No Ratings" }</Text>
               </View>
-              <TouchableOpacity style={styles.seeMoreButton} onPress={ this.props.onSeeMore }>
-                <Text style={styles.seeMoreButtonText}>See More</Text>
+              <TouchableOpacity style={ styles.seeMoreButton } onPress={ this.props.onSeeMore }>
+                <Text style={ styles.seeMoreButtonText }>See More</Text>
               </TouchableOpacity>
             </View>
           </Animated.View>
@@ -115,14 +104,27 @@ const styles = StyleSheet.create({
 
   },
 
-  truckProfilePic: {
+  truckProfilePicContainer: {
     position: 'absolute',
     height: 125,
     width: 125,
-    backgroundColor: '#aaaaaa',
+    backgroundColor: 'white',
     alignSelf: 'center',
     zIndex: 3,
     borderRadius: 100,
+    borderWidth: 4,
+    borderColor: '#ffa61f',
+    overflow: 'hidden'
+  },
+
+  truckProfilePic: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+    zIndex: 4,
+    alignSelf: 'center',
   },
 
   likeButton: {
@@ -160,7 +162,8 @@ const styles = StyleSheet.create({
   },
 
   ratingText: {
-    fontSize: 10
+    fontSize: 15,
+    marginVertical: 5
   },
 
   followers: {
@@ -171,7 +174,6 @@ const styles = StyleSheet.create({
 
   followersText: {
       color: 'white',
-      marginVertical: 10,
       marginHorizontal: 35,
       fontSize: 18,
   },
@@ -185,15 +187,15 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     alignSelf: 'center',
     width: '30%',
-    marginBottom: 10
+    marginVertical: 10
   },
 
   seeMoreButtonText: {
       color: 'white',
       fontWeight: 'bold',
       textAlign: 'center',
-      marginVertical: 5,
-      marginHorizontal: 10
+      marginVertical: 8,
+      marginHorizontal: 12
   },
 
   backdrop: {
