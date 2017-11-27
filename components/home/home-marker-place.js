@@ -42,35 +42,38 @@ export default class Home extends Component {
     }
   }
 
-  openTruckPopup = (post) => {
-    truck = this.getTruckByUUID(post.truck) // Get truck object to set to state
-    this.setState({
-      popupIsOpen: true,
-      post,
-      truck,
-    });
-  }
-
-  closeTruckPopup = () => {
-    this.setState({
-      popupIsOpen: false,
-    });
-  }
-
-  onSeeMore = () => {
-    this.props.navigation.navigate('TruckDetail', { truck: this.state.truck }) // Navigate to next screen
-  }
-
-  // Takes a post object and returns a TruckMarker with the given coordinates in the post
-  _renderPost(post, key){
-    console.log("rendering");
-    return(
-      <TruckMarker post={ post } key={ key } onOpen = { this.openTruckPopup }/>
-    );
-  }
+  // openTruckPopup = (post) => {
+  //   truck = this.getTruckByUUID(post.truck) // Get truck object to set to state
+  //   this.setState({
+  //     popupIsOpen: true,
+  //     post,
+  //     truck,
+  //   });
+  // }
+  //
+  // closeTruckPopup = () => {
+  //   this.setState({
+  //     popupIsOpen: false,
+  //   });
+  // }
+  //
+  // onSeeMore = () => {
+  //   this.props.navigation.navigate('TruckDetail', { truck: this.state.truck }) // Navigate to next screen
+  // }
+  //
+  // // Takes a post object and returns a TruckMarker with the given coordinates in the post
+  // _renderPost(post, key){
+  //   console.log("rendering");
+  //   return(
+  //     <TruckMarker post={ post } key={ key } onOpen = { this.openTruckPopup }/>
+  //   );
+  // }
 
   onLongPress(location) {
     console.log("HELLO - need to use location here");
+    /* need to create another post that can be read by home.js for the truck that this person owns
+
+    maybe we can use AsyncStorage?*/
     // console.log(location); // getting crashes from this
     // console.log(location.coordinate);
     // console.log(location.position);
