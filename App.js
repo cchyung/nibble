@@ -11,7 +11,9 @@ import {
 import {
   StackNavigator,
   DrawerNavigator,
-  NavigationActions
+  NavigationActions,
+  SafeAreaView,
+  DrawerItems
  } from 'react-navigation';
 
 import { createStore, applyMiddleware } from 'redux';
@@ -87,16 +89,31 @@ class HomeScreen extends Component<{}> {
 //   }
 // );
 
+// Completely custom side menu?
+// https://codeburst.io/custom-drawer-using-react-navigation-80abbab489f7
 const HomeStack = StackNavigator(
   {
-    Home: {screen: HomeScreen},
-    TruckDetail: {screen: TruckDetail}
+    Home: { screen: HomeScreen },
+    TruckDetail: { screen: TruckDetail }
   },
   {
     initialRouteName: 'Home',
     headerMode: 'none',
   }
 )
+
+// Custom drawer container
+// Following https://shift.infinite.red/react-navigation-drawer-tutorial-part-2-9c382217ac6b
+const DrawerContainer = (props) => (
+  <SafeAreaView style={ styles.drawerContainer }>
+
+    // DrawerItems here
+    <DrawerItems { ...props } ></DrawerItems>
+    // This view is for the current trucks, positioned on the bottom.
+    // figure out a way to get these on this render function?
+    <View></View>
+  </SafeAreaView>
+);
 
 const App = DrawerNavigator(
   {
@@ -125,6 +142,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
+
   welcome: {
     fontSize: 20,
     textAlign: 'center',
@@ -137,6 +155,11 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     top: 0
+  },
+
+  drawerContainer: {
+    flex: 1,
+
   }
 });
 
