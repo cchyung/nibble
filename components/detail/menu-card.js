@@ -4,17 +4,21 @@ import {
   StyleSheet,
   Text,
   View
-} from 'react-native';
+} from 'react-native'
+
+import MenuList from "../menu/menu-list"
 
 export default class MenuCard extends Component {
   render() {
-    const { truck } = this.props
+    const { menu } = this.props
     return (
       <View style={ styles.truckCard }>
         <View style={ styles.truckCardDetail }>
           <Text style={ styles.textCenter }>Menu</Text>
           <View style={ styles.divider }></View>
-          <View style={ styles.menuContainer }></View>
+          <View style={ styles.menuContainer }>
+            <MenuList menu={ menu }/>
+          </View>
         </View>
       </View>
     );
@@ -46,7 +50,8 @@ const styles = StyleSheet.create({
   },
 
   menuContainer: {
-    height: 250, // temp
+    paddingBottom: 10,
+    maxHeight: 300,
   }
 
 

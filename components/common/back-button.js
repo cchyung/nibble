@@ -22,10 +22,10 @@ export default class BackButton extends Component {
     return(
       <TouchableOpacity
         onPress={ () => goBack() }
-        style={styles.backButton}
+        style={ styles.backButton }
         activeOpacity={0.8}
       >
-        <Image style={styles.backButtonInner} source={Images.backButton}/>
+        <Image style={styles.backButtonInner} source={ Images.backButton }/>
       </TouchableOpacity>
     );
   }
@@ -40,7 +40,8 @@ const styles = StyleSheet.create({
   },
 
   backButtonInner: {
-    height: 30,
+    height: 35,
     width: 45,
+    resizeMode: 'contain'
   },
 })

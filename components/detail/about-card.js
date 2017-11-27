@@ -7,13 +7,13 @@ import {
 
 export default class AboutCard extends Component {
   render() {
-    const { truck } = this.props
+    const { description } = this.props
     return (
       <View style={ styles.truckCard }>
         <View style={ styles.truckCardDetail }>
           <View style={styles.truckInformation}>
             <Text style={ [styles.textCenter, styles.header] }>About Us</Text>
-            <Text style={ styles.textCenter }>{ truck.description }</Text>
+            <Text style={ styles.textCenter }>{ description }</Text>
           </View>
         </View>
       </View>
@@ -55,5 +55,6 @@ const styles = StyleSheet.create({
 
   header: {
     fontSize: 18,
+    fontWeight: 'bold'
   }
 });

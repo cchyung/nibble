@@ -22,8 +22,8 @@ export default class TruckDetail extends Component {
             <BackButton navigation={ navigation }/>
             <View style={ styles.detailContent }>
               <TruckCard truck = { truck }/>
-              <AboutCard truck = { truck }/>
-              <MenuCard truck = { truck }/>
+              <AboutCard description = { truck.description }/>
+              <MenuCard menu = { truck.menu }/>
             </View>
         </ScrollView>
     );

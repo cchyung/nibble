@@ -21,9 +21,7 @@ export default class TruckCard extends Component {
           <View style={ styles.truckInformation }>
             <Text style={ [styles.textCenter, styles.header] }>{ truck.title }</Text>
             <Text style={ styles.textCenter }>{ truck.genre }</Text>
-            <View style={ styles.followers }>
-              <Text style={ styles.followersText }>{ truck.followers } Followers</Text>
-            </View>
+            <Text style={ styles.textCenter }>{ (truck.rating != null) ? truck.averageRating : "No Ratings" }</Text>
           </View>
         </View>
       </View>
@@ -98,13 +96,6 @@ const styles = StyleSheet.create({
       backgroundColor: '#4245f4', // temp
       borderRadius: 40,
       marginTop: 8,
-  },
-
-  followersText: {
-      color: 'white',
-      marginVertical: 10,
-      marginHorizontal: 35,
-      fontSize: 18,
   },
 
   textCenter: {

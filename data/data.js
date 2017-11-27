@@ -11,7 +11,32 @@ export const trucks = [
         "email": "kunal.k@hotmail.com",
         "phone": "1446696155",
         "followers": "400",
-        "image": "https://imgur.com/0H81G4l.jpg"
+        "image": "https://imgur.com/0H81G4l.jpg",
+        "menu": [
+          {
+            title: "Steak Tacos",
+            price: "6.50",
+            description: "3 delicious steak tacos. Cooked fresh on the grill.",
+            extra: "Toppings: Pico de Gallo, Cheese, Lettuce, Tomatoes, Onions, Guacamole (+$0.50)"
+          },
+          {
+            title: "Chicken Tacos",
+            price: "5.50",
+            description: "3 delicious chicken tacos. Cooked fresh on the grill.",
+            extra: "Toppings: Pico de Gallo, Cheese, Lettuce, Tomatoes, Onions, Guacamole (+$0.50)"
+          },
+          {
+            title: "Chips and Salsa",
+            price: "3.50",
+            description: "Chips and Salsa, not much more to it.",
+          },
+          {
+            title: "Tacos al Pastor",
+            price: "8.40",
+            description: "Our famous al Pastor, straight from the skewer.",
+            extra: "Toppings: Pico de Gallo, Cheese, Lettuce, Tomatoes, Onions, Guacamole (+$0.50), Tomatoes, Onions, Guacamole (+$0.50), Tomatoes, Onions, Guacamole (+$0.50)"
+          },
+        ],
     },
     {
         "uuid": "1",
@@ -23,7 +48,15 @@ export const trucks = [
         "email": "info@kogitruck.com",
         "phone": "9256874473",
         "followers": "1,255",
-        "image": "https://imgur.com/JTjBHFv.jpg"
+        "image": "https://imgur.com/JTjBHFv.jpg",
+        "menu": [
+          {
+            title: "Korean BBQ Tacos",
+            price: "9.50",
+            description: "The origin KBBQ Tacos.",
+            extra: "Corn Tortilla, Kimchi, Beef"
+          },
+        ]
     },
     {
         "uuid": "2",
@@ -35,7 +68,7 @@ export const trucks = [
         "email": "contact@armandos.com",
         "phone": "3334421141",
         "followers": "3,134",
-        "image": "https://imgur.com/DiWInAX.jpg"
+        "image": "https://imgur.com/DiWInAX.jpg",
     },
     {
         "uuid": "3",
@@ -61,7 +94,7 @@ export const posts = [
       "longitude": -118.27887
   },
   {
-      "uuid": "0",
+      "uuid": "4",
       "truck": "0",
       "start_time": "2017-11-12T22:00:00Z",
       "end_time": "2017-11-12T23:00:00Z",
