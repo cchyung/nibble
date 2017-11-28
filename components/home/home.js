@@ -67,7 +67,7 @@ export default class Home extends Component {
       <TruckMarker post={ post } key={ key } onOpen = { this.openTruckPopup }/>
     );
   }
-  
+
   render() {
     return (
       <View style={ styles.homeScreen } style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>

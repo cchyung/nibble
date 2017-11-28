@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  Image
 } from 'react-native';
+
+import Images from '@assets/images'
 
 export default class AboutCard extends Component {
   render() {
@@ -12,6 +15,7 @@ export default class AboutCard extends Component {
       <View style={ styles.truckCard }>
         <View style={ styles.truckCardDetail }>
           <View style={styles.truckInformation}>
+            <Image source={ Images.truckIconBlue } style={ styles.truckIcon }/>
             <Text style={ [styles.textCenter, styles.header] }>About Us</Text>
             <Text style={ styles.textCenter }>{ description }</Text>
           </View>
@@ -56,5 +60,12 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 18,
     fontWeight: 'bold'
+  },
+
+  truckIcon: {
+    height: 40,
+    width: 40,
+    resizeMode: 'contain',
+    alignSelf: 'center'
   }
 });

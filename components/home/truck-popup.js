@@ -12,6 +12,8 @@ import {
   Image
 } from 'react-native';
 
+import Images from '@assets/images'
+
 const { width, height } = Dimensions.get('window');
 
 export default class TruckPopup extends Component {
@@ -78,7 +80,7 @@ export default class TruckPopup extends Component {
               <View style={styles.truckInformation}>
                 <Text style={ [styles.textCenter, styles.header] }>{ truck.title }</Text>
                 <Text style={ styles.textCenter }>{ truck.genre }</Text>
-                <Text style={ [styles.textCenter, styles.ratingText] }>{ truck.averageRating ? truck.averageRating : "No Ratings" }</Text>
+                <Image source={ Images.threeStars } style={ styles.rating }></Image>
               </View>
               <TouchableOpacity style={ styles.seeMoreButton } onPress={ this.props.onSeeMore }>
                 <Text style={ styles.seeMoreButtonText }>See More</Text>
@@ -205,6 +207,12 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     justifyContent: 'flex-end',
     backgroundColor: 'transparent',
+  },
+  rating: {
+    width: 110,
+    height: 30,
+    marginVertical: 5,
+    resizeMode: 'contain',
   }
 
 });
