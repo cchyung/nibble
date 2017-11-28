@@ -82,7 +82,7 @@ class HomeScreen extends Component<{}> {
 class HomeMarkerScreen extends Component<{}> {
   render() {
     return(
-      <HomeMarker navigation={ this.props.navigation}/>
+      <HomeMarker navigation={ this.props.navigation }/>
     )
   };
 }
