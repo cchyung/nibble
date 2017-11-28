@@ -15,8 +15,6 @@ export default class TruckCard extends Component {
         <View style={ styles.truckProfilePicContainer }>
           <Image source={{ uri: truck.image }} style={ styles.truckProfilePic }/>
         </View>
-        <View style={ styles.likeButton }>
-        </View>
         <View style={ styles.truckCardDetail }>
           <View style={ styles.truckInformation }>
             <Text style={ [styles.textCenter, styles.header] }>{ truck.title }</Text>
