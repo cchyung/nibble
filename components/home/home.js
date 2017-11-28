@@ -67,16 +67,18 @@ export default class Home extends Component {
       <TruckMarker post={ post } key={ key } onOpen = { this.openTruckPopup }/>
     );
   }
-
+  
   render() {
     return (
       <View style={ styles.homeScreen } style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
         <ToggleMenuButton navigation={ this.props.navigation }/>
         <MapView
           style={styles.map}
+          showsUserLocation={ true }
+          showsMyLocationButton={ true }
           initialRegion={{
-            latitude: 34.019984,
-            longitude: -118.281233,
+            latitude: 34.021447,
+            longitude: -118.286984,
             latitudeDelta: 0.0222,
             longitudeDelta: 0.0221,
           }}

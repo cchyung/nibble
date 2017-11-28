@@ -8,6 +8,26 @@ import {
 
 
 export default class MenuItem extends Component {
+  _renderDescription(description) {
+    if(description != null){
+      return (
+        <Text style = { styles.description }>{ description }</Text>
+      );
+    } else {
+      return null; // Return nothing
+    }
+  }
+
+  _renderExtra(extra) {
+    if(extra != null){
+      return (
+        <Text style = { styles.extra }>{ extra }</Text>
+      );
+    } else {
+      return null; // Return nothing
+    }
+  }
+
   render() {
     const { menuItem } = this.props;
 
@@ -17,8 +37,8 @@ export default class MenuItem extends Component {
           <Text style = { [styles.h1, styles.title] }>{ menuItem.title }</Text>
           <Text style = { [styles.h1, styles.price] }>${ menuItem.price }</Text>
         </View>
-        <Text style = { styles.description }>{ menuItem.description }</Text>
-        <Text style = { styles.extra }>{ menuItem.extra }</Text>
+        { this._renderDescription( menuItem.description ) }
+        { this._renderExtra( menuItem.extra ) }
       </View>
     )
 

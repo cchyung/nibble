@@ -34,7 +34,7 @@ export const trucks = [
             title: "Tacos al Pastor",
             price: "8.40",
             description: "Our famous al Pastor, straight from the skewer.",
-            extra: "Toppings: Pico de Gallo, Cheese, Lettuce, Tomatoes, Onions, Guacamole (+$0.50), Tomatoes, Onions, Guacamole (+$0.50), Tomatoes, Onions, Guacamole (+$0.50)"
+            extra: "Toppings: Pico de Gallo, Cheese, Lettuce, Tomatoes, Onions, Guacamole (+$0.50)"
           },
         ],
     },
@@ -53,9 +53,26 @@ export const trucks = [
           {
             title: "Korean BBQ Tacos",
             price: "9.50",
-            description: "The origin KBBQ Tacos.",
+            description: "The original KBBQ Tacos.",
             extra: "Corn Tortilla, Kimchi, Beef"
           },
+          {
+            title: "Spicy Pork Tacos",
+            price: "6.50",
+            description: "Three spicy pork tacos.",
+          },
+          {
+            title: "Chocolate Tres Leches Cake",
+            price: "3.50",
+            description: "Delicious Chocolate Cake desert.",
+            extra: "Comes with Whipped Cream.  Ice Cream +$0.50"
+          },
+          {
+            title: "Blackjack Quesadillas",
+            price: "4.50",
+            description: "Caramelized onions and spicy pork married together with melting cheddar and jack cheeses.",
+          },
+
         ]
     },
     {
@@ -69,6 +86,28 @@ export const trucks = [
         "phone": "3334421141",
         "followers": "3,134",
         "image": "https://imgur.com/DiWInAX.jpg",
+        "menu": [
+          {
+            title: "French Fries",
+            price: "3.50"
+          },
+          {
+            title: "Cheeseburger",
+            price: "4.50",
+            description: "Just your standard Cheese Burger, cooked fresh on the grill.",
+            extra: "Lettuce, Tomatoes, Onions, Avocado (+$.50)"
+          },
+          {
+            title: "Asada Fries",
+            price: "8.50",
+            description: "Crispy french fries covered with carne asada, guacamole, shredded cheese, & sour cream."
+          },
+          {
+            title: "California Burrito",
+            price: "5.50",
+            description: "Carne Asada, crsipy french fries, guacamole, shredded cheese, sour cream, & our delicious avocado salsa wrapped in a flour tortilla."
+          },
+        ]
     },
     {
         "uuid": "3",
@@ -80,7 +119,25 @@ export const trucks = [
         "email": "bob@gmail.com",
         "phone": "1442229985",
         "followers": "684",
-        "image": "https://imgur.com/UPCdBUL.jpg"
+        "image": "https://imgur.com/UPCdBUL.jpg",
+        "menu": [
+          {
+            title: "100% Angus Beef Burger",
+            description: "Bob's Famous 100% Angus Beef, now available on his new food truck!",
+            extra: "Lettuce, Tomatoes, Onions",
+            price: "10.50"
+          },
+          {
+            title: "Cheeseburger",
+            price: "9.75",
+            extra: "Choose: Cheddar, Swiss, or American"
+          },
+          {
+            title: "Truffle Fries",
+            price: "4.50",
+            description: "Fresh french fries topped with parmesean and truffle oil."
+          }
+        ]
     }
 ]
 
