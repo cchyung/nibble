@@ -36,6 +36,7 @@ import {
 
 export default class Home extends Component {
   state = {
+    isPostCreated: false,
     popupIsOpen: false,
     region: undefined,
     isDateTimePickerVisible: false,
@@ -77,6 +78,13 @@ export default class Home extends Component {
     console.log('A date has been picked: ', date);
     this.onSaveButtonPressed(date);
     this._hideDateTimePicker();
+  }
+
+  async componentDidMount() {
+    AsyncStorage.getItem('myTruck', (err, result) => {
+      this.state.isPostCreated = true;
+      this.render();
+    });
   }
 
   render() {

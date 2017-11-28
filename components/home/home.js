@@ -45,7 +45,6 @@ export default class Home extends Component {
         posts.push(JSON.parse(result));
       }
       this.render();
-      // console.log(JSON.parse(result));
       console.log(posts);
     });
   }
