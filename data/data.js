@@ -166,12 +166,12 @@ export const posts = [
       "latitude": 34.024203,
       "longitude": -118.294640
   },
-  {
-      "uuid": "2",
-      "truck": "3",
-      "start_time": "2017-11-12T22:00:00Z",
-      "end_time": "2017-11-12T23:00:00Z",
-      "latitude": 34.025430,
-      "longitude": -118.288701
-  }
+  // {
+  //     "uuid": "2",
+  //     "truck": "3",
+  //     "start_time": "2017-11-12T22:00:00Z",
+  //     "end_time": "2017-11-12T23:00:00Z",
+  //     "latitude": 34.025430,
+  //     "longitude": -118.288701
+  // }
 ]

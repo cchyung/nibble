@@ -6,6 +6,7 @@ import App from '../index';
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  AsyncStorage,
   Button,
   Platform,
   StyleSheet,
@@ -29,8 +30,22 @@ import {
 } from '@data/data'
 
 export default class Home extends Component {
-  state = {
-    popupIsOpen: false,
+  constructor(props) {
+    super(props);
+    this.state = {
+      popupIsOpen: false,
+    };
+  }
+
+  async componentDidMount() {
+    console.log('component mounted');
+    try {
+      console.log('here');
+      AsyncStorage.getItem('myTruck', (err, result) => {
+        posts.push(JSON.parse(result));
+        // console.log(JSON.parse(result));
+        console.log(posts);
+    });
   }
 
   // Helper function to get truck data by id
@@ -67,7 +82,7 @@ export default class Home extends Component {
       <TruckMarker post={ post } key={ key } onOpen = { this.openTruckPopup }/>
     );
   }
-  
+
   render() {
     return (
       <View style={ styles.homeScreen } style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
