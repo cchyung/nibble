@@ -41,7 +41,9 @@ export default class Home extends Component {
     console.log('component mounted');
       console.log('here');
     AsyncStorage.getItem('myTruck', (err, result) => {
-      posts.push(JSON.parse(result));
+      if (posts.length <= 3) {
+        posts.push(JSON.parse(result));
+      }
       this.render();
       // console.log(JSON.parse(result));
       console.log(posts);
