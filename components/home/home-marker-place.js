@@ -21,6 +21,7 @@ import MapView from 'react-native-maps'
 import Images from '@assets/images'
 import ToggleMenuButton from '../common/toggle-menu-button'
 import TruckPopup from './truck-popup'
+import PlaceTruckMarker from './place-truck-marker'
 import TruckMarker from './truck-marker'
 
 import {
@@ -31,6 +32,7 @@ import {
 export default class Home extends Component {
   state = {
     popupIsOpen: false,
+    region: undefined,
   }
 
   // Helper function to get truck data by id
@@ -42,45 +44,12 @@ export default class Home extends Component {
     }
   }
 
-  // openTruckPopup = (post) => {
-  //   truck = this.getTruckByUUID(post.truck) // Get truck object to set to state
-  //   this.setState({
-  //     popupIsOpen: true,
-  //     post,
-  //     truck,
-  //   });
-  // }
-  //
-  // closeTruckPopup = () => {
-  //   this.setState({
-  //     popupIsOpen: false,
-  //   });
-  // }
-  //
-  // onSeeMore = () => {
-  //   this.props.navigation.navigate('TruckDetail', { truck: this.state.truck }) // Navigate to next screen
-  // }
-  //
-  // // Takes a post object and returns a TruckMarker with the given coordinates in the post
-  // _renderPost(post, key){
-  //   console.log("rendering");
-  //   return(
-  //     <TruckMarker post={ post } key={ key } onOpen = { this.openTruckPopup }/>
-  //   );
-  // }
-
-  onLongPress(location) {
-    console.log("HELLO - need to use location here");
-    /* need to create another post that can be read by home.js for the truck that this person owns
-
-    maybe we can use AsyncStorage?*/
-    // console.log(location); // getting crashes from this
-    // console.log(location.coordinate);
-    // console.log(location.position);
+  onRegionChange(region) {
+    this.state.region = region;
   }
-  //
-  onPress = () => {
-    console.log("hello22");
+
+  onSaveButtonPressed = () => {
+    
   }
 
   render() {
@@ -95,8 +64,16 @@ export default class Home extends Component {
             latitudeDelta: 0.0222,
             longitudeDelta: 0.0221,
           }}
-          // onPress={this.onPress}
-          onLongPress={(location) => this.onLongPress(location)}
+          onRegionChange={(region) => this.onRegionChange(region)}
+        />
+        <Image
+          source={Images.truckMarker}
+        />
+        <Button
+          onPress={this.onSaveButtonPressed}
+          title="Mark truck location"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
         />
       </View>
     );
