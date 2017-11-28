@@ -7,6 +7,8 @@ import {
   Image
 } from 'react-native';
 
+import Images from '@assets/images'
+
 export default class TruckCard extends Component {
   render() {
     const { truck } = this.props;
@@ -19,7 +21,7 @@ export default class TruckCard extends Component {
           <View style={ styles.truckInformation }>
             <Text style={ [styles.textCenter, styles.header] }>{ truck.title }</Text>
             <Text style={ styles.textCenter }>{ truck.genre }</Text>
-            <Text style={ styles.textCenter }>{ (truck.rating != null) ? truck.averageRating : "No Ratings" }</Text>
+            <Image source={ Images.threeStars } style={ styles.rating }></Image>
           </View>
         </View>
       </View>
@@ -104,5 +106,12 @@ const styles = StyleSheet.create({
 
   header: {
     fontSize: 28,
+  },
+
+  rating: {
+    width: 120,
+    height: 33,
+    marginVertical: 5,
+    resizeMode: 'contain',
   }
 });

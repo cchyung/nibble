@@ -7,6 +7,7 @@ import {
   Button,
   View,
   ScrollView,
+  Image
 } from 'react-native';
 import {
   StackNavigator,
@@ -19,6 +20,8 @@ import {
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { apiMiddleware } from 'redux-api-middleware';
+
+import Images from '@assets/images'
 
 import trollowApp from './reducers/trollowApp'
 
@@ -129,14 +132,25 @@ const App = DrawerNavigator(
     HomeStack: {
       screen: HomeStack,
       navigationOptions: {
-        title: "Home"
+        title: "Home",
+        drawerIcon: () => (
+          <Image
+            source={ Images.homeIcon }
+            style={ styles.drawerIcon }
+          />
+        ),
       }
     },
-    Login: {screen: LoginScreen},
     PlaceMarker: {
       screen: HomeMarkerScreen,
       navigationOptions: {
-        title: "My Truck"
+        title: "My Truck",
+        drawerIcon: () => (
+          <Image
+            source={ Images.truckIcon }
+            style={ styles.drawerIcon }
+          />
+        ),
       }
     }
   },
@@ -145,7 +159,12 @@ const App = DrawerNavigator(
     headerMode: 'none',
     drawerWidth: 244,
     contentOptions: {
-      activeTintColor: '#ffa733'
+      activeTintColor: '#ffa733',
+      labelStyle: {
+        fontSize: 18,
+        fontWeight: 'normal',
+        marginLeft: 0,
+      },
     }
   }
 );
@@ -174,8 +193,13 @@ const styles = StyleSheet.create({
 
   drawerContainer: {
     flex: 1,
+  },
 
-  }
+  drawerIcon: {
+    height: 30,
+    width: 30,
+    resizeMode: 'center'
+  },
 });
 
 export default App;
