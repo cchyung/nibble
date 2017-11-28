@@ -17,7 +17,7 @@ import React, {
 
  export default class PlaceTruckMarker extends Component {
   static propTypes = {
-    
+
   }
 
   render(){
