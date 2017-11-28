@@ -18,6 +18,10 @@ import {
 
 import MapView from 'react-native-maps'
 
+import moment from 'moment'
+
+import DateTimePicker from 'react-native-modal-datetime-picker'
+
 import Images from '@assets/images'
 import ToggleMenuButton from '../common/toggle-menu-button'
 import TruckPopup from './truck-popup'
@@ -33,6 +37,7 @@ export default class Home extends Component {
   state = {
     popupIsOpen: false,
     region: undefined,
+    isDateTimePickerVisible: false,
   }
 
   // Helper function to get truck data by id
@@ -48,8 +53,27 @@ export default class Home extends Component {
     this.state.region = region;
   }
 
-  onSaveButtonPressed = () => {
+  onSaveButtonPressed = (date) => {
+    console.log(moment());
+    let post = {
+      "uuid": "0",
+      "truck": "1",
+      "start_time": moment(),
+      "end_time": date,
+      "latitude": this.state.region.latitude,
+      "longitude": this.state.region.longitude
+    };
     
+  }
+
+  _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
+
+  _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
+
+  _handleDatePicked = (date) => {
+    console.log('A date has been picked: ', date);
+    this.onSaveButtonPressed(date);
+    this._hideDateTimePicker();
   }
 
   render() {
@@ -70,10 +94,17 @@ export default class Home extends Component {
           source={Images.truckMarker}
         />
         <Button
-          onPress={this.onSaveButtonPressed}
+          onPress={this._showDateTimePicker}
           title="Mark truck location"
           color="#841584"
           accessibilityLabel="Learn more about this purple button"
+        />
+        <DateTimePicker
+          mode="time"
+          minimumDate={moment().toDate()}
+          isVisible={this.state.isDateTimePickerVisible}
+          onConfirm={this._handleDatePicked}
+          onCancel={this._hideDateTimePicker}
         />
       </View>
     );
