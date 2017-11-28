@@ -65,6 +65,8 @@ export default class Home extends Component {
       "longitude": this.state.region.longitude
     };
     AsyncStorage.setItem('myTruck', JSON.stringify(post));
+    const { navigate } = this.props.navigation;
+    navigate('Home')
   }
 
   _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
@@ -94,12 +96,12 @@ export default class Home extends Component {
         <Image
           source={Images.truckMarker}
         />
-        <Button
+      <TouchableOpacity
           onPress={this._showDateTimePicker}
-          title="Mark truck location"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
-        />
+          style={ styles.setLocationButton }
+        >
+        <Text style={ styles.setLocationButtonText }>SET TRUCK LOCATION</Text>
+      </TouchableOpacity>
         <DateTimePicker
           mode="time"
           minimumDate={moment().toDate()}
@@ -123,5 +125,25 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     top: 0
+  },
+
+  setLocationButton: {
+    position: 'absolute',
+    bottom: 5,
+    paddingHorizontal: 15,
+    width: '90%',
+    backgroundColor: '#0033A0',
+    borderRadius: 10,
+    marginVertical: 20,
+    paddingVertical: 10
+  },
+
+  setLocationButtonText: {
+    fontSize: 14,
+    marginVertical: 10,
+    fontWeight: 'bold',
+    color: 'white',
+    textAlign: 'center',
+
   }
 });
