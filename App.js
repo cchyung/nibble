@@ -22,6 +22,7 @@ import trollowApp from './reducers/trollowApp'
 
 import Root from './components/root'
 import Home from './components/home/home'
+import HomeMarker from './components/home/home-marker-place'
 import Login from './components/auth/login'
 import TruckDetail from './components/detail/truck-detail'
 
@@ -73,6 +74,14 @@ class HomeScreen extends Component<{}> {
   }
 }
 
+class HomeMarkerScreen extends Component<{}> {
+  render() {
+    return(
+      <HomeMarker navigation={ this.props.navigation}/>
+    )
+  };
+}
+
 // Set up navigator
 // const App = StackNavigator(
 //   {
@@ -107,6 +116,12 @@ const App = DrawerNavigator(
       }
     },
     Login: {screen: LoginScreen},
+    PlaceMarker: {
+      screen: HomeMarkerScreen,
+      navigationOptions: {
+        title: "My Truck"
+      }
+    }
   },
   {
     initialRouteName: 'HomeStack',
