@@ -64,7 +64,7 @@ export default class Home extends Component {
       "latitude": this.state.region.latitude,
       "longitude": this.state.region.longitude
     };
-    AsyncStorage.setItem('myTruck', post);
+    AsyncStorage.setItem('myTruck', JSON.stringify(post));
   }
 
   _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });

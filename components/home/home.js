@@ -39,12 +39,12 @@ export default class Home extends Component {
 
   async componentDidMount() {
     console.log('component mounted');
-    try {
       console.log('here');
-      AsyncStorage.getItem('myTruck', (err, result) => {
-        posts.push(JSON.parse(result));
-        // console.log(JSON.parse(result));
-        console.log(posts);
+    AsyncStorage.getItem('myTruck', (err, result) => {
+      posts.push(JSON.parse(result));
+      this.render();
+      // console.log(JSON.parse(result));
+      console.log(posts);
     });
   }
 
