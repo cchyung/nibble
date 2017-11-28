@@ -6,6 +6,7 @@ import App from '../index';
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  AsyncStorage,
   Button,
   Platform,
   StyleSheet,
@@ -57,13 +58,13 @@ export default class Home extends Component {
     console.log(moment());
     let post = {
       "uuid": "0",
-      "truck": "1",
+      "truck": "3",
       "start_time": moment(),
       "end_time": date,
       "latitude": this.state.region.latitude,
       "longitude": this.state.region.longitude
     };
-    
+    AsyncStorage.setItem('myTruck', JSON.stringify(post));
   }
 
   _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
