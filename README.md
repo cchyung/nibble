@@ -3,6 +3,10 @@
 # Nibble
 Front end for a startup called Nibble written in [React Native](https://github.com/facebook/react-native)
 
+Nibble was the winner of [Lavalab USC](http://usclavalab.org/)'s Fall 2017 Demo Night.  
+
+Lavalab is a product incubator at USC where students work throughout the semester to build a project, culminating in a demo night where groups pitch their product to VC's and industry specialists.
+
 The repository for the backend API that this application consumes is located [here](https://github.com/cchyung/nibble-backend).
 
 ![Mobile App Gif](https://github.com/cchyung/nibble/blob/master/media/customer-flow.gif)
